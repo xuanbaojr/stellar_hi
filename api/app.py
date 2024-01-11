@@ -102,7 +102,7 @@ data = pd.read_csv(data_path)
 data = pd.DataFrame(data)
 print(data)
 
-question = "toi da hoc 50 tin chi" #-> output : ban phai du 127 tin chi -> ok
+question = input("Nhap cau hoi:") #-> output : ban phai du 127 tin chi -> ok
 # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
 
 demo = insert_document(data)
