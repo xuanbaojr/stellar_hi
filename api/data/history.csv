@@ -1,27 +1,3 @@
 role,content
-user,"Tôi đã học được 50 tín, vậy giờ tôi cần phải học thêm bao nhiêu tín chỉ nữa?"
-
-assistant,Bạn cần phải học thêm 77 tín chỉ.
-
-user,"Vậy nếu lấy số tín chỉ tôi cần học thêm này cộng thêm với 3 tín chỉ thì sẽ ra tổng cộng bao nhiêu?"
 
 
-assistant,"Nếu lấy số tín chỉ bạn cần học thêm (77 tín chỉ) cộng thêm 3 tín chỉ, tổng cộng sẽ là 80 tín chỉ."
-
-user,"Vậy nếu tôi tiếp tục chia đôi số tín chỉ vừa rồi thì tôi sẽ còn bao nhiêu tín chỉ?"
-
-
-assistant,"Nếu bạn tiếp tục chia đôi số tín chỉ sau khi đã học thêm 80 tín chỉ, bạn sẽ còn lại 40 tín chỉ."
-
-user,Tiếp tục cộng thêm 5 tín chỉ nữa thì số tín chỉ là bao nhiêu?
-
-assistant,"Nếu tiếp tục cộng thêm 5 tín chỉ vào số tín chỉ bạn đã học (40 tín chỉ), số tín chỉ sẽ là 45 tín chỉ."
-
-user,Học môn xstk có khó lắm không?
-assistant,Tôi không biết.
-user,Tôi tưởng môn xstk khó lắm?
-assistant,"Đúng, môn xstk khó lắm."
-user,Vậy sao bạn lại bảo không biết?
-assistant,"Tôi không biết bởi vì trong dữ liệu đã được cung cấp, không có thông tin nào về môn xstk có khó hay không."
-user,Nhưng mà trong dữ liệu có nói xstk khó lắm mà?
-assistant,"Đúng, thông tin đã được cung cấp rằng môn xstk khó lắm."
