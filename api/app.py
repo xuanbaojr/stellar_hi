@@ -83,6 +83,8 @@ def search_index_by_query(question, k):
 import os
 from openai import AzureOpenAI
 import json
+import csv
+
 def using_embedding_model(input):
     client_ = AzureOpenAI(
         azure_endpoint = "https://sunhackathon14.openai.azure.com/",
@@ -96,14 +98,14 @@ def using_embedding_model(input):
     )
     # truong minh co 127 tin + toi hoc 50 tin -> chatgpt ->
     return response
-def create_answer(context, input):
+def create_answer(context):
     client_ = AzureOpenAI(
         azure_endpoint = "https://sunhackathon14.openai.azure.com/",
         api_key="9b2cb1b0bb95439e938ddf43e13aa955",
         api_version="2023-05-15"
     )
     
-    prompt = f"Trả lời câu hỏi dựa vào dữ liệu được cho ở bên dưới, và nếu câu hỏi không thể trả lời được, hãy nói \"Tôi không biết\"\n\nDữ liệu được cho: {context[0]}\n\n---\n\nCâu hỏi: {input}\nCâu trả lời:"
+    prompt = f"Trả lời câu hỏi dựa vào dữ liệu được cho ở bên dưới, và nếu câu hỏi không thể trả lời được, hãy trả lời mà không cần dựa vào dữ liệu được cho và nếu vẫn không trả lời được, hãy nói \"Tôi không biết\"\n\nDữ liệu được cho:\n {context}\n\n---\n\nCâu trả lời:"
     
     response = client_.chat.completions.create(
         model="GPT35TURBO",
@@ -118,19 +120,39 @@ def create_answer(context, input):
 data_path = "data\openai.csv"
 data = pd.read_csv(data_path)
 data = pd.DataFrame(data)
+history_path = "data\history.csv"
 print(data)
 while True:
-    question = input("Nhap cau hoi:") #-> output : ban phai du 127 tin chi -> ok
-    # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
-    
-    demo = insert_document(data)
+    history = pd.read_csv(history_path)
+    history = pd.DataFrame(history)
+    last_row = history.iloc[-1]
+    if last_row["role"] == "user":
+        question = last_row["content"] #-> output : ban phai du 127 tin chi -> ok
+        # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
 
-    k = 1
-    result = search_index_by_query(question, 1)
-    print(result)
-    
-    answer = create_answer(result, question)
-    print(answer)
+        demo = insert_document(data)
+
+        k = 1
+        result = search_index_by_query(question, 1)
+        print(result)
+
+        context = "Dữ liệu đoạn hội thoại trước đây:\n"
+        for index, row in history.iterrows():
+            if row["content"] != last_row["content"]:
+                context += row["content"]
+                context += "\n"
+        context += f"Dữ liệu được cung cấp thêm: {result[0]}\n"
+        context += f"Câu hỏi: {question}"
+        print(context)
+        
+        answer = create_answer(context)
+        print(answer)
+        
+        with open(history_path, "a") as file:
+            writer = csv.writer(file)
+            fields = ["assistant", answer]
+            writer.writerow(fields)
+            file.close()    
 
     
 # H*gu8-e9l8zcrLFQA*L-
