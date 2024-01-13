@@ -3,8 +3,8 @@ import pandas as pd
 import os, wget, json
 from elasticsearch.exceptions import NotFoundError
 
-ELASTIC_PASSWORD = "JhDVEGyUbsDCy_8zM*6V"
-CERT_FINGERPRINT = "ba625541c728aa5b9c0f6e46854847aaaf127508d8c4d7598383e752c0ae6a4a"
+ELASTIC_PASSWORD = "KENehWXj_IpXqG5-n7sX"
+CERT_FINGERPRINT = "b9d7dc9c6a701580d91134d1de46db58610e98718a97a9c710ea72cd14e73856"
 index_name = "stellar"
 
 client =  Elasticsearch(
@@ -65,12 +65,12 @@ def search_index_by_query(question, k):
 
     query = using_embedding_model(question).data[0].embedding
     response = client.search(
-    index = index_name,
-    knn={
-        "field": "content_vector",
-        "query_vector": query,
-        "k": k,
-        "num_candidates": 100
+        index = index_name,
+        knn={
+            "field": "content_vector",
+            "query_vector": query,
+            "k": k,
+            "num_candidates": 100
         }
     )
 
@@ -85,9 +85,9 @@ from openai import AzureOpenAI
 import json
 def using_embedding_model(input):
     client_ = AzureOpenAI(
-    azure_endpoint = "https://sunhackathon14.openai.azure.com/",
-    api_key="9b2cb1b0bb95439e938ddf43e13aa955",
-    api_version="2023-05-15"
+        azure_endpoint = "https://sunhackathon14.openai.azure.com/",
+        api_key="9b2cb1b0bb95439e938ddf43e13aa955",
+        api_version="2023-05-15"
     )
 
     response = client_.embeddings.create(
@@ -96,20 +96,41 @@ def using_embedding_model(input):
     )
     # truong minh co 127 tin + toi hoc 50 tin -> chatgpt ->
     return response
+def create_answer(context, input):
+    client_ = AzureOpenAI(
+        azure_endpoint = "https://sunhackathon14.openai.azure.com/",
+        api_key="9b2cb1b0bb95439e938ddf43e13aa955",
+        api_version="2023-05-15"
+    )
+    
+    prompt = f"Trả lời câu hỏi dựa vào dữ liệu được cho ở bên dưới, và nếu câu hỏi không thể trả lời được, hãy nói \"Tôi không biết\"\n\nDữ liệu được cho: {context[0]}\n\n---\n\nCâu hỏi: {input}\nCâu trả lời:"
+    
+    response = client_.chat.completions.create(
+        model="GPT35TURBO",
+        messages=[
+            {'role': 'system', 'content': 'Bạn là một trợ lý tốt bụng.'},
+            {'role': 'user', 'content': prompt}
+        ],
+    )
+    return response.choices[0].message.content
+
 
 data_path = "data\openai.csv"
 data = pd.read_csv(data_path)
 data = pd.DataFrame(data)
 print(data)
+while True:
+    question = input("Nhap cau hoi:") #-> output : ban phai du 127 tin chi -> ok
+    # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
+    
+    demo = insert_document(data)
 
-question = input("Nhap cau hoi:") #-> output : ban phai du 127 tin chi -> ok
-# data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
-
-demo = insert_document(data)
-
-k = 1
-result = search_index_by_query(question, k)
-print(result)
+    k = 1
+    result = search_index_by_query(question, 1)
+    print(result)
+    
+    answer = create_answer(result, question)
+    print(answer)
 
     
 # H*gu8-e9l8zcrLFQA*L-
