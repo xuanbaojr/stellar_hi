@@ -42,12 +42,13 @@ def create_index_by_mapping():
     print(response)
     
 def bulk_data(data):
+    data_cols = data.shape[1]
     for index, row in data.iterrows():
         bulk_data = [
             {
                 "title": "first paragraph another",
                 "content": [
-                    {"vector": using_embedding_model(row[f'content{i}']), "text": row[f'content{i}']} for i in range(7)
+                    {"vector": using_embedding_model(row[f'content{i}']), "text": row[f'content{i}']} for i in range(data_cols-1)
                 ],
             },
         ]
@@ -127,12 +128,13 @@ def create_answer(context):
 
 data_path = "data\openai.csv"
 data = pd.read_csv(data_path)
-
 print(data)
+
+print(data.shape[1])
 history_path = "data\history.csv"
 his_data = pd.read_csv(history_path)
-print(his_data)
 
+ 
 while True:
     
     history = pd.read_csv(history_path)
@@ -148,13 +150,18 @@ while True:
         question = last_row["content"] #-> output : ban phai du 127 tin chi -> ok
         # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
 
-        demo = bulk_data(data)
 
         k = 1
         result = search_index_by_query(question, 1)
         print(result)
+        data['content'+str(data.shape[1] - 1)] = question
+        data.to_csv(data_path, index=False)
+         
+        client.indices.delete(index=index_name)
+        create_index_by_mapping()
+        demo = bulk_data(data)
 
-        context = "Dữ liệu đoạn hội thoại trước đây:\n"
+        context = "Bài toán tương tự:\n"
         for index, row in history.iterrows():
             if row["box_id"] == last_row["box_id"] and row["content"] != last_row["content"]:
                 context += row["content"]
