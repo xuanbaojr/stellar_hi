@@ -8,7 +8,7 @@ import shutil
 
 app = FastAPI()
 
-origins = []
+origins = ['http://localhost:3000']
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,7 +29,7 @@ class ChatHistory(BaseModel):
 @app.post("/chats/add/{box_id}", response_model=ChatHistory)
 async def update_history(box_id: str, chat: Chat):
     update_chat = jsonable_encoder(chat)
-    filename = "data\history.csv"
+    filename = "data/history.csv"
     with open(filename, "a") as csvfile:
         writer = csv.writer(csvfile)
         fields = [box_id, update_chat["role"], update_chat["content"]]
@@ -53,7 +53,7 @@ async def get_chats(box_id: str):
 
 @app.get("/chats/latest/{box_id}", response_model=Chat)
 async def get_latest_chat(box_id: str):
-    filename = "data\history.csv"
+    filename = "data/history.csv"
     latest_chat = {"role": ""}
     while latest_chat["role"] != "assistant":
         df = pd.DataFrame(pd.read_csv(filename))

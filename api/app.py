@@ -4,10 +4,9 @@ import os, wget, json
 from elasticsearch.exceptions import NotFoundError
 from elasticsearch.helpers import BulkIndexError
 
+ELASTIC_PASSWORD = "+4kXjAbs6A9bPnm*3b=B"
+CERT_FINGERPRINT = "59530e151800deccd2c9f15f625f1fc11aa53c08e25e27d7741a3a0d2f69e119"
 
-# ELASTIC_PASSWORD = "dA9UFqZxZ4uL-*-v=4lH"
-ELASTIC_PASSWORD = "dA9UFqZxZ4uL-*-v=4lH"
-CERT_FINGERPRINT = "ddd5637f667684e20163b3438d55edb5d15b6eff79978e81da7e3f9628ca4b8e"
 index_name = "stellar"
 
 client =  Elasticsearch(
@@ -126,8 +125,12 @@ def create_answer(context):
     return response.choices[0].message.content
 
 
-data_path = "data\openai.csv"
+data_path = "data/openai.csv"
 data = pd.read_csv(data_path)
+
+# data = pd.DataFrame(data)
+# history_path = "data/history.csv"
+
 print(data)
 
 print(data.shape[1])

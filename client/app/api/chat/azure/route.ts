@@ -2,6 +2,7 @@ import { CHAT_SETTING_LIMITS } from "@/lib/chat-setting-limits"
 import { checkApiKey, getServerProfile } from "@/lib/server/server-chat-helpers"
 import { ChatAPIPayload } from "@/types"
 import { OpenAIStream, StreamingTextResponse } from "ai"
+import { da } from "date-fns/locale"
 import OpenAI from "openai"
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs"
 
@@ -12,17 +13,20 @@ export async function POST(request: Request) {
   const json = await request.json()
   const { chatSettings, messages } = json as ChatAPIPayload
 
-  const lastMessage = messages[messages.length - 1]
+  console.log(messages[messages.length - 1].content);
 
   const result = await fetch('http://localhost:8000/chats/add/1', {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ "role": "user",
-    "content": messages[messages.length - 1] })
-  })
-  return new Response('ok')
+    "content": messages[messages.length - 1].content })
+  });
+  const data = await result.json();
+  const { chats } = data;
+  console.log(chats[1].content);
+  return new Response(chats[1].content);
 
   try {
     const profile = await getServerProfile()

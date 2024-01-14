@@ -1,4 +1,27 @@
 box_id,role,content
 
 
-
+1,user,Hi
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Hi
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Hello
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Hello
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Hello
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Hello
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Chào bạn
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Chào bạn
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Chào bạn
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Chào bạn
+1,assistant,Xin chào! Tôi ở đây để giúp bạn. Bạn có câu hỏi hay cần sự trợ giúp gì không?
+1,user,Hưng là ai 
+1,assistant,Tôi không biết ai là Hưng vì không có thông tin về Hưng trong dữ liệu được cung cấp.
+1,user,Trang là người yêu tao 
+1,assistant,"Tôi không có dữ liệu về Trang hay thông tin về ai đó là người yêu Trang, nên tôi không thể trả lời câu hỏi đó."
