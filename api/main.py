@@ -18,7 +18,7 @@ class ChatHistory(BaseModel):
 async def update_history(box_id: str, chat: Chat):
     update_chat = jsonable_encoder(chat)
     filename = "data\history.csv"
-    with open(filename, "a") as csvfile:
+    with open(filename, 'w', encoding='utf-8', newline='') as csvfile:
         writer = csv.writer(csvfile)
         fields = [box_id, update_chat["role"], update_chat["content"]]
         writer.writerow(fields)
