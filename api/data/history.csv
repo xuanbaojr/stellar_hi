@@ -1,1 +1,7 @@
-role,content
+box_id,role,content
+1,user,Vậy số tín chỉ còn lại tôi cần học là bao nhiêu?
+1,assistant,"Dữ liệu được cung cấp cho mình là ""bạn phải đủ 127 tín"". Vì vậy, số tín chỉ còn lại bạn cần học là 127."
+1,user,Vậy số tín chỉ còn lại tôi cần học là bao nhiêu?
+1,assistant,Số tín chỉ còn lại bạn cần học là 127.
+1,user,Cho tôi hỏi về các lĩnh vực của Trí tuệ nhân tạo?
+1,assistant,"Trí tuệ nhân tạo là lĩnh vực nghiên cứu và phát triển công nghệ và hệ thống có khả năng thực hiện các công việc yêu cầu sự thông minh như nhận biết hình ảnh, ngôn ngữ tự nhiên, tự động lái xe và dự đoán. Trí tuệ nhân tạo có thể được ứng dụng trong nhiều lĩnh vực như y tế, giao thông, tài chính và nhiều hơn nữa."

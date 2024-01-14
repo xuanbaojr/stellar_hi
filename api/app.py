@@ -125,7 +125,10 @@ print(data)
 while True:
     history = pd.read_csv(history_path)
     history = pd.DataFrame(history)
-    last_row = history.iloc[-1]
+    if history.empty == False:
+        last_row = history.iloc[-1]
+    else:
+        last_row = {"role": ""}
     if last_row["role"] == "user":
         question = last_row["content"] #-> output : ban phai du 127 tin chi -> ok
         # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
@@ -138,7 +141,7 @@ while True:
 
         context = "Dữ liệu đoạn hội thoại trước đây:\n"
         for index, row in history.iterrows():
-            if row["content"] != last_row["content"]:
+            if row["box_id"] == last_row["box_id"] and row["content"] != last_row["content"]:
                 context += row["content"]
                 context += "\n"
         context += f"Dữ liệu được cung cấp thêm: {result[0]}\n"
@@ -150,9 +153,9 @@ while True:
         
         with open(history_path, "a") as file:
             writer = csv.writer(file)
-            fields = ["assistant", answer]
+            fields = [last_row["box_id"], "assistant", answer]
             writer.writerow(fields)
-            file.close()    
+            file.close()
 
     
 # H*gu8-e9l8zcrLFQA*L-
