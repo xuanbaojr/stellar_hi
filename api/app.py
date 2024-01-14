@@ -3,8 +3,8 @@ import pandas as pd
 import os, wget, json
 from elasticsearch.exceptions import NotFoundError
 
-ELASTIC_PASSWORD = "KENehWXj_IpXqG5-n7sX"
-CERT_FINGERPRINT = "b9d7dc9c6a701580d91134d1de46db58610e98718a97a9c710ea72cd14e73856"
+ELASTIC_PASSWORD = "+4kXjAbs6A9bPnm*3b=B"
+CERT_FINGERPRINT = "59530e151800deccd2c9f15f625f1fc11aa53c08e25e27d7741a3a0d2f69e119"
 index_name = "stellar"
 
 client =  Elasticsearch(
@@ -117,10 +117,10 @@ def create_answer(context):
     return response.choices[0].message.content
 
 
-data_path = "data\openai.csv"
+data_path = "data/openai.csv"
 data = pd.read_csv(data_path)
 data = pd.DataFrame(data)
-history_path = "data\history.csv"
+history_path = "data/history.csv"
 print(data)
 while True:
     history = pd.read_csv(history_path)
