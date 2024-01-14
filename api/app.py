@@ -48,21 +48,11 @@ def bulk_data(data):
             {
                 "title": "first paragraph another",
                 "content": [
-                    {"vector": using_embedding_model(row['content0']), "text": row['content0']},
-                    {"vector": using_embedding_model(row['content1']), "text": row['content1']},
-                    {"vector": using_embedding_model(row['content2']), "text": row['content2']},
-                    {"vector": using_embedding_model(row['content3']), "text": row['content3']},
-                    # {"vector": using_embedding_model(row['content3']), "text": row['content3']},
-                    # {"vector": using_embedding_model(row['Content4']), "text": row['Content4']},
-                    # {"vector": using_embedding_model(row['Content5']), "text": row['Content5']},
-                    # {"vector": using_embedding_model(row['Content6']), "text": row['Content6']},
-                    # {"vector": using_embedding_model(row['Content7']), "text": row['Content7']},
-                    # {"vector": using_embedding_model(row['Content8']), "text": row['Content8']},
-                    # {"vector": using_embedding_model(row['Content9']), "text": row['Content9']},
-                    
+                    {"vector": using_embedding_model(row[f'content{i}']), "text": row[f'content{i}']} for i in range(4)
                 ],
             },
         ]
+
         try:
             response = helpers.bulk(client, bulk_data, index=index_name, refresh=True)
         except BulkIndexError as e:
@@ -141,6 +131,8 @@ data = pd.read_csv(data_path)
 
 print(data)
 history_path = "data\history.csv"
+his_data = pd.read_csv(history_path)
+print(his_data)
 
 while True:
     
@@ -151,7 +143,7 @@ while True:
         
     else:
         last_row = {"role": ""}
-        print("a")
+        # print("a")
     if last_row["role"] == "user":
         
         question = last_row["content"] #-> output : ban phai du 127 tin chi -> ok
@@ -175,7 +167,7 @@ while True:
         answer = create_answer(context)
         print(answer)
         
-        with open(history_path, 'w', encoding='utf-8', newline='') as file:
+        with open(history_path, 'a', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
             fields = [last_row["box_id"], "assistant", answer]
             writer.writerow(fields)
