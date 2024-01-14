@@ -115,15 +115,68 @@ def using_embedding_model(input):
     # truong minh co 127 tin + toi hoc 50 tin -> chatgpt ->
     return response.data[0].embedding
 
-data_path = os.path.join("data", "openai.csv")
+
+
+def create_answer(context):
+    client_ = AzureOpenAI(
+        azure_endpoint = "https://sunhackathon14.openai.azure.com/",
+        api_key="9b2cb1b0bb95439e938ddf43e13aa955",
+        api_version="2023-05-15"
+    )
+    
+    prompt = f"Trả lời câu hỏi dựa vào dữ liệu được cho ở bên dưới, và nếu câu hỏi không thể trả lời được, hãy trả lời mà không cần dựa vào dữ liệu được cho và nếu vẫn không trả lời được, hãy nói \"Tôi không biết\"\n\nDữ liệu được cho:\n {context}\n\n---\n\nCâu trả lời:"
+    
+    response = client_.chat.completions.create(
+        model="GPT35TURBO",
+        messages=[
+            {'role': 'system', 'content': 'Bạn là một trợ lý tốt bụng.'},
+            {'role': 'user', 'content': prompt}
+        ],
+    )
+    return response.choices[0].message.content
+
+
+data_path = "data\openai.csv"
 data = pd.read_csv(data_path)
 
 print(data)
-# bulk_data(data)
-k = 1
-for i in range(10):
-    question = input(":") #-> output : ban phai du 127 tin chi -> ok
-    result = search_index_by_query(question, k)
-    print(result)
+history_path = "data\history.csv"
 
+while True:
+    
+    history = pd.read_csv(history_path)
+    history = pd.DataFrame(history)
+    if history.empty == False:
+        last_row = history.iloc[-1]
+        
+    else:
+        last_row = {"role": ""}
+        print("a")
+    if last_row["role"] == "user":
+        
+        question = last_row["content"] #-> output : ban phai du 127 tin chi -> ok
+        # data = array[vector] : sinh vien phai dang ky 127 tin -> vector[1]
 
+        demo = bulk_data(data)
+
+        k = 1
+        result = search_index_by_query(question, 1)
+        print(result)
+
+        context = "Dữ liệu đoạn hội thoại trước đây:\n"
+        for index, row in history.iterrows():
+            if row["box_id"] == last_row["box_id"] and row["content"] != last_row["content"]:
+                context += row["content"]
+                context += "\n"
+        context += f"Dữ liệu được cung cấp thêm: {result[0]}\n"
+        context += f"Câu hỏi: {question}"
+        print(context)
+        
+        answer = create_answer(context)
+        print(answer)
+        
+        with open(history_path, 'w', encoding='utf-8', newline='') as file:
+            writer = csv.writer(file)
+            fields = [last_row["box_id"], "assistant", answer]
+            writer.writerow(fields)
+            file.close()
