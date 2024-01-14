@@ -1,1 +1,32 @@
-01,user,hello
+box_id,role,content
+1,user,xác suất thống kê
+1,user,bai tap xac suat thong ke
+1,assistant,"Rất tiếc, nhưng tôi không có đủ dữ liệu để trả lời câu hỏi này."
+1,user,hello
+1,user,"1.6. Từ một hộp chứa 8 viên bi đỏ và 5 viên bi trắng, người ta lấy ngẫu nhiên 2 lần, mỗi lần 1 viên bi, không hoàn lại"
+1,user,.
+1,user,string.
+1,user,"1.6. Từ một hộp chứa 8 viên bi đỏ và 5 viên bi trắng, người ta lấy ngẫu nhiên 2 lần, mỗi lần 1 viên bi, không hoàn lại. Tính xác suất đến."
+1,user,"1.6. Từ một hộp chứa 8 viên bi đỏ và 5 viên bi trắng, người ta lấy ngẫu nhiên 2 lần, mỗi lần 1 viên bi, không hoàn lại. Tính xác suất đến:"
+1,user,"1.6. Từ một hộp chứa 8 viên bi đỏ và 5 viên bi trắng, người ta lấy ngẫu nhiên 2 lần, mỗi lần 1 viên bi, không hoàn lại. Tính xác suất đến:1.6. Từ một hộp chứa 8 viên bi đỏ và 5 viên bi trắng, người ta lấy ngẫu nhiên 2 lần, mỗi lần 1 viên bi, không hoàn lại. Tính xác suất đến"
+1,user,"1.6. Từ một hộp chứa 8 viên bi đỏ và 5 viên bi trắng, người ta lấy ngẫu nhiên 2 lần, mỗi lần 1 viên bi, không hoàn lại. Tính xác suất đến:a/ 2 viên bi đỏ;b/ hai viên bi khác màu;c/ viên bi thứ hai là bi trắng."
+1,assistant,"a/ Để tính xác suất lấy 2 viên bi đỏ, chúng ta sẽ tính tổng số cách lấy 2 viên từ 13 viên bi trong hộp và số cách lấy 2 viên bi đỏ từ 8 viên bi đỏ trong hộp. 
+
+Tổng số cách lấy 2 viên từ 13 viên bi: C(13, 2) = 13! / (2!(13-2)!) = 78.
+Số cách lấy 2 viên bi đỏ từ 8 viên bi đỏ: C(8, 2) = 8! / (2!(8-2)!) = 28.
+
+Vậy xác suất lấy 2 viên bi đỏ là 28/78 = 14/39 ≈ 0.359.
+
+b/ Để tính xác suất lấy hai viên bi khác màu, chúng ta tính tổng số cách lấy hai viên từ 13 viên bi trong hộp và số cách lấy một viên bi đỏ và một viên bi trắng từ 8 viên bi đỏ và 5 viên bi trắng trong hộp.
+
+Tổng số cách lấy 2 viên từ 13 viên bi: C(13, 2) = 78.
+Số cách lấy một viên bi đỏ và một viên bi trắng từ 8 viên bi đỏ và 5 viên bi trắng: C(8, 1) * C(5, 1) = 8 * 5 = 40.
+
+Vậy xác suất lấy hai viên bi khác màu là 40/78 ≈ 20/39 ≈ 0.513.
+
+c/ Để tính xác suất viên bi thứ hai là bi trắng, chúng ta tính số cách lấy một viên bi trắng từ 5 viên bi trắng trong hộp và số cách lấy một viên từ 13 viên bi trong hộp (vì bi trắng đã được lấy ra khỏi hộp).
+
+Số cách lấy một viên bi trắng từ 5 viên bi trắng: C(5, 1) = 5.
+Số cách lấy một viên từ 13 viên bi: C(13, 1) = 13.
+
+Vậy xác suất viên bi thứ hai là bi trắng là 5/13 ≈ 0.385."
