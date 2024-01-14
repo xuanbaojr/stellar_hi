@@ -99,11 +99,13 @@ def search_index_by_query(query, k):
 import os
 from openai import AzureOpenAI
 import json
+import csv
+
 def using_embedding_model(input):
     client_ = AzureOpenAI(
-    azure_endpoint = "https://sunhackathon14.openai.azure.com/",
-    api_key="9b2cb1b0bb95439e938ddf43e13aa955",
-    api_version="2023-05-15"
+        azure_endpoint = "https://sunhackathon14.openai.azure.com/",
+        api_key="9b2cb1b0bb95439e938ddf43e13aa955",
+        api_version="2023-05-15"
     )
 
     response = client_.embeddings.create(
