@@ -48,7 +48,7 @@ def bulk_data(data):
             {
                 "title": "first paragraph another",
                 "content": [
-                    {"vector": using_embedding_model(row[f'content{i}']), "text": row[f'content{i}']} for i in range(4)
+                    {"vector": using_embedding_model(row[f'content{i}']), "text": row[f'content{i}']} for i in range(7)
                 ],
             },
         ]

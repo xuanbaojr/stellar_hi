@@ -1,2 +1,25 @@
-title,content0,content1,content2,content3
-"a","tôi tên là Bảo","c","d","e"
+title,content0,content1,content2,content3,content4,content5,content6
+a,"6. Đối với việc khảo sát mức tiêu hao nguyên liệu (tính bằng gram) đến sản xuất ra một đơn vị sản phẩm của một nhà máy, người ta quan sát mức tiêu hao nguyên liệu trên một mẫu, và thu được kết quả sau: (đơn vị gram) ix 18 19 20 21 22 in 13 21 27 21 18 a) Tìm khoảng tin cậy 98% cho số tiền trung bình được dùng để mua nguyên liệu đến sản xuất trong mỗi quý của nhà máy. Biết rằng giá loại nguyên liệu này là 800 ngàn đồng/kg và sản lượng của nhà máy trong một quý là 40.000 sản phẩm. b) Nếu muốn được lượng số tiền trung bình để mua nguyên liệu trong mỗi quý của nhà máy bằng khoảng tin cậy 99% và sai số không quá 8 triệu đồng thì phải lấy mẫu với kích thước là bao nhiêu?","7.Xem vectơ ngẫu nhiên (X, Y) tuân theo luật phân phối chuẩn hai chiều mà mẫu ngẫu nhiên gồm 8 cặp được chọn ra như sau:
+
+makefile
+Copy code
+xi:   1   2   3   4   5   6   7   8
+yi:   5   7  11  17  21  25  29  32
+a) Hãy tính giá trị hệ số tương quan mẫu của X và Y và cho nhận xét.
+
+b) Hãy kiểm định giả thuyết về sự tương quan giữa X và Y ở mức ý nghĩa α=5%.
+
+c) Hãy lập hàm hồi quy tuyến tính cho mẫu và dự đoán nếu X lấy giá trị bằng 20 thì Y nhận giá trị bao nhiêu?","4.5. Đối với nghiên cứu về tuổi thọ của một loại bóng đèn, người ta thử nghiệm 100 bóng đèn trước khi tiến hành kỹ thuật cải tiến. Sau khi áp dụng kỹ thuật cải tiến, người ta thử nghiệm lại 100 bóng đèn. Kết quả được ghi nhận như sau:
+
+a) Tính giá trị trung bình đội diện cho mỗi nhóm - mẫu 1 và nhóm kiểm soát, tức là mẫu trước cải tiến và bảng tổn số liệu sau cải tiến.
+
+b) So sánh giá trị trung bình và giá trị độ lệch chuẩn của hai mẫu trên.","Một lô hàng có rất nhiều sản phẩm, với tỷ lệ hàng giả là 30%.
+
+a/ Lấy ngẫu nhiên 10 sản phẩm từ lô hàng, tính xác suất để có nhiều nhất 2 sản phẩm giả.
+b/ Người ta lấy ngẫu nhiên ra tổng số sản phẩm một đến khi gặp sản phẩm giả thì dừng. Tìm luật phân phối xác suất và tính kỳ vọng của số sản phẩm đã kiểm tra.","
+2.9. Một người điều khiển 3 máy tăng nhiệt động đều được lắp với nhau. Xác suất hỏng trong một ca sản xuất của máy 1, 2 và 3 lần lượt là 0,1; 0,2 và 0,3.
+a/ Lập bảng phân phối xác suất cho số máy hoạt động tốt trong một ca sản xuất.
+b/ Trung bình, trong một ca, có bao nhiêu máy hoạt động tốt? Tính độ lệch chuẩn của số máy hoạt động tốt trong một ca sản xuất","
+1.1. Một hộp có 100 tờ thẻ như nhau được ghi các số từ 1 đến 100. Rút ngẫu nhiên hai thẻ rồi đặt theo thứ tự từ trái qua phải. Tính xác suất đều nhau:
+a/ Rút được hai thẻ lập nên một số có hai chữ số.
+b/ Rút được hai thẻ lập nên một số chia hết cho 5.","Đối với một công ty thương mại, dựa vào kinh nghiệm quá khứ, họ đã xác định rằng vào cuối năm thì 80% số hóa đơn đã được thanh toán đúng hạn, 10% khách hàng trả lệch 1 tháng, 6% lệch 2 tháng và 4% lệch hơn 2 tháng. Vào cuối năm nay, công ty kiểm tra một mẫu ngẫu nhiên gồm 400 hóa đơn và thấy rằng: 287 hóa đơn đã được thanh toán đúng hạn, 49 hóa đơn trả lệch 1 tháng, 30 hóa đơn trả lệch 2 tháng và 34 hóa đơn trả lệch hơn 2 tháng. Như vậy, việc thanh toán hóa đơn năm nay có còn theo quy luật như những năm trước không? (Kết luận tại mức ý nghĩa 5%, α)."
